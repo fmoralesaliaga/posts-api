@@ -58,7 +58,7 @@ const apiLimiter = rateLimit({
 
 // Basic middleware
 app.use(cors({
-  origin: config.cors.origin
+  origin: config.cors?.origin || '*'
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -76,7 +76,7 @@ app.get('/docs.json', (req, res) => {
 app.use('/health', healthRoutes);
 
 // API routes with rate limiting
-const apiPrefix = config.api.prefix;
+const apiPrefix = config.api?.prefix || '';
 app.use(`${apiPrefix}/posts`, apiLimiter, postRoutes);
 
 // 404 handler

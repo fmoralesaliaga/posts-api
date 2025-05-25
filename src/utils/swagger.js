@@ -1,6 +1,9 @@
 const swaggerJSDoc = require('swagger-jsdoc');
 const config = require('../config');
 
+// Adding a safeguard for when config.api is undefined
+const apiPrefix = config.api?.prefix || '';
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -15,7 +18,7 @@ const options = {
     },
     servers: [
       {
-        url: `http://localhost:${config.port}${config.api.prefix}`,
+        url: `http://localhost:${config.port}${apiPrefix}`,
         description: 'Development server',
       },
     ],

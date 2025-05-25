@@ -12,7 +12,6 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
   api:
     build: .
     ports:
@@ -23,6 +22,9 @@ services:
       - db
     environment:
       DATABASE_URL: postgres://admin:admin@db:5432/postsdb
+      API_PREFIX: ""
+      CORS_ORIGIN: "*"
+      PORT: 3001
 
 volumes:
   postgres_data:
